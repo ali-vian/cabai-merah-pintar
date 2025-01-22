@@ -2,5 +2,5 @@ streamlit
 onnx
 onnxruntime
 numpy
-opencv-python
+opencv-python-headless
 Pillow
