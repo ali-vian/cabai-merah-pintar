@@ -60,7 +60,7 @@ def predict_image(image_path):
 background_style = """
 <style>
     [data-testid="stAppViewContainer"]{
-        background-image: url("https://github.com/ali-vian/cabai-merah-pintar/blob/8721b4747210c31ee7f73ad3189e3277b35791e2/gambar.png");
+        background-image: url("http://cabaimerahpintar.web.id/static/gambar.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -88,7 +88,7 @@ background_style = """
 st.markdown(background_style, unsafe_allow_html=True)
 
 # Streamlit UI
-st.title("Klasifikasi Gambar Daun dengan Model ONNX")
+st.title("KLASIFIKASI PENYAKIT DAUN CABAI MERAH")
 st.write("Unggah gambar untuk diklasifikasikan.")
 
 # Bagian unggah file
@@ -108,7 +108,7 @@ if uploaded_file is not None:
         # Prediksi gambar
         try:
             predicted_class_name, prediction_probabilities = predict_image(file_path)
-            st.success(f"Kelas Prediksi: {predicted_class_name}")
+            st.success(f"Hasil Klasifikasi: {predicted_class_name}")
         except Exception as e:
             st.error(f"Terjadi kesalahan: {e}")
 
