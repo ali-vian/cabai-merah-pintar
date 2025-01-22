@@ -60,7 +60,7 @@ def predict_image(image_path):
 background_style = """
 <style>
     [data-testid="stAppViewContainer"]{
-        background-image: url("https://www.petanikode.com/img/git/remote/repository-kosong.png");
+        background-image: url("https://github.com/ali-vian/cabai-merah-pintar/blob/8721b4747210c31ee7f73ad3189e3277b35791e2/gambar.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
