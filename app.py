@@ -7,6 +7,7 @@ import onnxruntime as ort
 import numpy as np
 import cv2
 from PIL import Image
+import base64
 
 # Konfigurasi direktori unggahan
 UPLOAD_FOLDER = './uploads'
@@ -56,6 +57,40 @@ def predict_image(image_path):
 
     # Hasil prediksi
     return predicted_class_name, predictions[0].tolist()
+
+def get_img(file):
+    with open(file,"rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+img = get_img("gambar.png")
+
+background_style = f"""
+<style>
+    [data-testid="stAppViewContainer"]{{
+        background-image: url("data:image/png;base64,{img}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+    /* Berikan warna latar belakang solid untuk container utama */
+    @media (prefers-color-scheme: dark) {{
+        [data-testid="stMainBlockContainer"] {{
+            background-color: black; /* Warna hitam untuk mode gelap */
+            color: white; /* Ubah teks menjadi putih agar kontras */
+        }}
+    }}
+    @media (prefers-color-scheme: light) {{
+        [data-testid="stMainBlockContainer"] {{
+            background-color: white; /* Warna putih untuk mode terang */
+            color: black; /* Ubah teks menjadi hitam agar kontras */
+        }}
+    }}
+    [data-testid="stButton"] {{
+        text-align:center;
+    }}
+</style>
+"""
 
 background_style = """
 <style>
