@@ -92,33 +92,6 @@ background_style = f"""
 </style>
 """
 
-background_style = """
-<style>
-    [data-testid="stAppViewContainer"]{
-        background-image: url("http://cabaimerahpintar.web.id/static/gambar.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    /* Berikan warna latar belakang solid untuk container utama */
-    @media (prefers-color-scheme: dark) {
-        [data-testid="stMainBlockContainer"] {
-            background-color: black; /* Warna hitam untuk mode gelap */
-            color: white; /* Ubah teks menjadi putih agar kontras */
-        }
-    }
-    @media (prefers-color-scheme: light) {
-        [data-testid="stMainBlockContainer"] {
-            background-color: white; /* Warna putih untuk mode terang */
-            color: black; /* Ubah teks menjadi hitam agar kontras */
-        }
-    }
-    [data-testid="stButton"] {
-        text-align:center;
-    }
-</style>
-"""
-
 # Aplikasikan CSS ke Streamlit
 st.markdown(background_style, unsafe_allow_html=True)
 
