@@ -1,3 +1,5 @@
+# 
+
 import streamlit as st
 import os
 import onnx
@@ -29,8 +31,7 @@ def preprocess_image(image_path):
     # Mengubah ukuran gambar
     img = cv2.resize(img, (128, 128))  # Ubah ukuran gambar
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Konversi ke RGB
-    
-    # Normalisasi piksel
+# Normalisasi piksel
     img_array = img / 255.0
     
     # Tambahkan dimensi batch
@@ -56,10 +57,32 @@ def predict_image(image_path):
     # Hasil prediksi
     return predicted_class_name, predictions[0].tolist()
 
+background_style = """
+<style>
+    [data-testid="stAppViewContainer"]{
+        background-image: url("http://cabaimerahpintar.web.id/static/gambar.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    /* Berikan warna latar belakang solid untuk container utama */
+    [data-testid="stMainBlockContainer"] {
+        background-color: rgba(255, 255, 255, 1); /* Warna putih dengan transparansi 80% */
+    }
+    [data-testid="stButton"] {
+        text-align:center;
+    }
+</style>
+"""
+
+# Aplikasikan CSS ke Streamlit
+st.markdown(background_style, unsafe_allow_html=True)
+
 # Streamlit UI
-st.title("KLASIFIKASI PENYAKIT DAUN CABAI MERAH")
+st.title("Klasifikasi Gambar Daun dengan Model ONNX")
 st.write("Unggah gambar untuk diklasifikasikan.")
 
+# Bagian unggah file
 uploaded_file = st.file_uploader("Pilih file gambar", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
@@ -69,17 +92,16 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
 
     # Tampilkan gambar yang diunggah
-    st.image(file_path, caption="Gambar yang diunggah")
+    st.image(file_path, caption="Gambar yang diunggah", use_column_width=True)
 
-    # Prediksi gambar
-    try:
-        predicted_class_name, prediction_probabilities = predict_image(file_path)
-        st.success(f"Hasil Klasifikasi: {predicted_class_name}")
-        # st.write("Probabilitas Prediksi:")
-        # for i, prob in enumerate(prediction_probabilities):
-        #     st.write(f"{class_names.get(i, 'Unknown')}: {prob:.4f}")
-    except Exception as e:
-        st.error(f"Terjadi kesalahan: {e}")
+    # Tombol untuk klasifikasi
+    if st.button("Klasifikasikan"):
+        # Prediksi gambar
+        try:
+            predicted_class_name, prediction_probabilities = predict_image(file_path)
+            st.success(f"Kelas Prediksi: {predicted_class_name}")
+        except Exception as e:
+            st.error(f"Terjadi kesalahan: {e}")
 
-    # Hapus file setelah diproses
-    os.remove(file_path)
+        # Hapus file setelah diproses
+        os.remove(file_path)
