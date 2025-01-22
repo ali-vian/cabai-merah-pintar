@@ -57,7 +57,7 @@ def predict_image(image_path):
     return predicted_class_name, predictions[0].tolist()
 
 # Streamlit UI
-st.title("Klasifikasi Gambar Daun dengan Model ONNX")
+st.title("KLASIFIKASI PENYAKIT DAUN CABAI MERAH")
 st.write("Unggah gambar untuk diklasifikasikan.")
 
 uploaded_file = st.file_uploader("Pilih file gambar", type=["png", "jpg", "jpeg"])
@@ -69,12 +69,12 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
 
     # Tampilkan gambar yang diunggah
-    st.image(file_path, caption="Gambar yang diunggah", use_column_width=True)
+    st.image(file_path, caption="Gambar yang diunggah")
 
     # Prediksi gambar
     try:
         predicted_class_name, prediction_probabilities = predict_image(file_path)
-        st.success(f"Kelas Prediksi: {predicted_class_name}")
+        st.success(f"Hasil Klasifikasi: {predicted_class_name}")
         # st.write("Probabilitas Prediksi:")
         # for i, prob in enumerate(prediction_probabilities):
         #     st.write(f"{class_names.get(i, 'Unknown')}: {prob:.4f}")
