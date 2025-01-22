@@ -66,8 +66,17 @@ background_style = """
         background-attachment: fixed;
     }
     /* Berikan warna latar belakang solid untuk container utama */
-    [data-testid="stMainBlockContainer"] {
-        background-color: rgba(255, 255, 255, 1); /* Warna putih dengan transparansi 80% */
+    @media (prefers-color-scheme: dark) {
+        [data-testid="stMainBlockContainer"] {
+            background-color: black; /* Warna hitam untuk mode gelap */
+            color: white; /* Ubah teks menjadi putih agar kontras */
+        }
+    }
+    @media (prefers-color-scheme: light) {
+        [data-testid="stMainBlockContainer"] {
+            background-color: white; /* Warna putih untuk mode terang */
+            color: black; /* Ubah teks menjadi hitam agar kontras */
+        }
     }
     [data-testid="stButton"] {
         text-align:center;
