@@ -60,7 +60,7 @@ def predict_image(image_path):
 background_style = """
 <style>
     [data-testid="stAppViewContainer"]{
-        background-image: url("http://cabaimerahpintar.web.id/static/gambar.png");
+        background-image: url("https://www.petanikode.com/img/git/remote/repository-kosong.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -101,7 +101,7 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
 
     # Tampilkan gambar yang diunggah
-    st.image(file_path, caption="Gambar yang diunggah", use_column_width=True)
+    st.image(file_path, caption="Gambar yang diunggah", use_container_width=True)
 
     # Tombol untuk klasifikasi
     if st.button("Klasifikasikan"):
